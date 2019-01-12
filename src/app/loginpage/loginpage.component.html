@@ -1,10 +1,27 @@
-<h3 align="center">LOGIN PAGE</h3>
-<form class="example-form" >
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="User Email_id" type="email" >
-  </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="password" type="password" value="">
-  </mat-form-field>
-</form>
+<mat-card style="height:auto; width:500px; margin-left:480px;margin-top:120px ">
+<h3 align="center">LOGIN</h3>
+<div class="container">
+<table  class="table" align="center">
+    <tr >
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="EMAIL ID"  #email="ngModel" type="email" [(ngModel)]="user_email_id" required email >
+          <mat-error *ngIf="email.hasError('required')"> Email Is Required</mat-error>
+          <mat-error *ngIf="!email.hasError('required')"> Enter an valid Email</mat-error>
+        </mat-form-field>
+      </tr>
+      <tr>
+          <mat-form-field class="example-full-width">
+            <input matInput [type]="flag?'password':'text'"  placeholder="password" type="password" [(ngModel)]="user_password" minlength="8">
+            <mat-icon (click)="flag=!flag" matSuffix>{{flag?'visibility':'visibility_off'}}</mat-icon>
+          </mat-form-field>
+        </tr>
+
+
+<button mat-raised-button color="primary" (click)="loginuser()">LOGIN</button>&nbsp;
+<button mat-raised-button color="primary" (click)="cancel()">CANCEL</button>&nbsp;&nbsp;
+&nbsp;&nbsp;<a (click)="forgetpassword()">Forget password?</a></table>
+<br><br><br>
+<a (click)="signupuser()" style="margin-left:150px;"> No Account?Create One!</a>
+</div>
+</mat-card>
